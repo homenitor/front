@@ -1,34 +1,9 @@
 <script lang="ts">
-	import { Service } from './app/Service'
-
-	$: promise = getLastTemperature()
-	$: temperature = undefined
-
-	const interval = 1000 * 60
-
-	async function getLastTemperature() {
-		const service = new Service()
-		const response = await service.getLastTemperature('livingroom')
-		temperature = response.Value()
-	}
-
-	setInterval(() => {
-		promise = getLastTemperature()
-	}, interval)
+	import DisplayLastTemperature from './ui/components/DisplayLastTemperature.svelte'
 </script>
 
 <main>
-{#await promise}
-	{#if temperature == undefined}
-		<h1>...waiting</h1>
-	{:else}
-		<h1>La température est de {temperature}°C</h1>
-	{/if}
-{:then}
-	<h1>La température est de {temperature}°C</h1>
-{:catch error}
-	<h1 style="color: red">{error}</h1>
-{/await}
+	<DisplayLastTemperature />
 </main>
 
 <style>
