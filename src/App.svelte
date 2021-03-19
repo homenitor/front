@@ -1,9 +1,9 @@
 <script lang="ts">
-	export let name: string;
+	import DisplayLastTemperature from './ui/components/DisplayLastTemperature.svelte'
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
+	<DisplayLastTemperature />
 </main>
 
 <style>
