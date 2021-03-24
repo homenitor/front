@@ -15,11 +15,6 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2-beta
 
-      - name: Update npm
-        run: |
-          npm update -g
-          npm --version
-
       - name: Cache Node.js modules
         uses: actions/cache@v1
         with:
