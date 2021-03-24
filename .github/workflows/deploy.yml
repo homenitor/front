@@ -42,10 +42,10 @@ jobs:
 
       - name: Tags
         run: |
-          docker tag homenitor ${{ secrets.DOCKER_ORGANISATION }}/front:$(echo ${GITHUB_SHA} | cut -c1-7)
-          docker tag homenitor ${{ secrets.DOCKER_ORGANISATION }}/front:latest
+          docker tag homenitor homenitor/front:$(echo ${GITHUB_SHA} | cut -c1-7)
+          docker tag homenitor homenitor/front:latest
 
       - name: Push
         run: |
-          docker push ${{ secrets.DOCKER_ORGANISATION }}/front:$(echo ${GITHUB_SHA} | cut -c1-7)
-          docker push ${{ secrets.DOCKER_ORGANISATION }}/front:latest
+          docker push homenitor/front:$(echo ${GITHUB_SHA} | cut -c1-7)
+          docker push homenitor/front:latest
