@@ -47,4 +47,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: homenitor/front:$(echo ${GITHUB_SHA} | cut -c1-7),homenitor/front:latest
+          tags: homenitor/front:latest
