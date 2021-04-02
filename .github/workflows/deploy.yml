@@ -30,20 +30,18 @@ jobs:
       - name: Unit Tests
         run: npm run test
 
-      - name: Build app and image
-        run: |
-          npm run build
-          docker build -f containers/Dockerfile -t homenitor .
+      - name: Build app
+        run: npm run build
 
-      - name: Docker login
-        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Tags
-        run: |
-          docker tag homenitor homenitor/front:$(echo ${GITHUB_SHA} | cut -c1-7)
-          docker tag homenitor homenitor/front:latest
-
-      - name: Push
-        run: |
-          docker push homenitor/front:$(echo ${GITHUB_SHA} | cut -c1-7)
-          docker push homenitor/front:latest
+      - name: Build image and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: homenitor/front:$(echo ${GITHUB_SHA} | cut -c1-7),homenitor/front:latest
