@@ -3,7 +3,7 @@
 
   $: promise = getLastHumidity();
   $: humidity = undefined;
-  $: humidityMessage = `L'humidité est de ${humidity}°C`;
+  $: humidityMessage = `L'humidité est de ${humidity}%`;
 
   async function getLastHumidity() {
     const service = ServiceFactory.getService();
