@@ -1,3 +1,4 @@
+import type { Humidity } from '../entities/Humidity'
 import type { Temperature } from '../entities/Temperature'
 import type { Repository } from './Repository'
 
@@ -18,5 +19,9 @@ export class Service {
 
   public async getLastTemperature(room: string): Promise<Temperature> {
     return this.repository.getLastTemperature(room)
+  }
+
+  public async getLastHumidity(room: string): Promise<Humidity> {
+    return this.repository.getLastHumidity(room)
   }
 }

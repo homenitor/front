@@ -1,6 +1,7 @@
 import type { Repository } from '../core/app/Repository'
+import { Humidity } from '../core/entities/Humidity'
 import { Temperature } from '../core/entities/Temperature'
-import type { GetLastTemperatureResponse } from './responses'
+import type { GetLastHumidityResponse, GetLastTemperatureResponse } from './responses'
 
 export class Api implements Repository {
   private API_URL = globalThis.API_URL
@@ -25,6 +26,19 @@ export class Api implements Repository {
 
     const temperatureResponse: GetLastTemperatureResponse = await response.json()
     return new Temperature(temperatureResponse.value)
+  }
+
+  public async getLastHumidity(room: string): Promise<Humidity> {
+    const path = `/humidities/${room}`
+    const response = await this.fetch(path)
+
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`
+      throw new Error(message)
+    }
+
+    const humidityResponse: GetLastHumidityResponse = await response.json()
+    return new Humidity(humidityResponse.value)
   }
 
   private async fetch(path: string) {
