@@ -42,7 +42,7 @@ export default {
   plugins: [
     replace({
       globalThis: JSON.stringify({
-        API_URL: production ? 'http://back:3000' : 'http://localhost:3000',
+        API_URL: production ? 'http://192.168.1.11:3000' : 'http://localhost:3000',
       }),
     }),
     svelte({
