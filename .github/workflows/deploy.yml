@@ -48,3 +48,4 @@ jobs:
           context: .
           push: false
           tags: homenitor/front:latest
+          file: ./containers/Dockerfile
