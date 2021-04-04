@@ -3,7 +3,7 @@ import { Temperature } from '../core/entities/Temperature'
 import type { GetLastTemperatureResponse } from './responses'
 
 export class Api implements Repository {
-  private API_URL = 'http://localhost:3000'
+  private API_URL = globalThis.API_URL
   private static instance: Api
 
   public static getInstance(): Api {
@@ -29,6 +29,7 @@ export class Api implements Repository {
 
   private async fetch(path: string) {
     const url = this.getUrl(path)
+    console.log(url)
     return fetch(url)
   }
 
