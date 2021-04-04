@@ -11,7 +11,7 @@
     temperature = response.Value();
   }
 
-  const interval = 1000 * 60;
+  const interval = 1000 * 5;
   setInterval(() => {
     promise = getLastTemperature();
   }, interval);

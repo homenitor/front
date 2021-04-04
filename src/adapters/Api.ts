@@ -29,7 +29,6 @@ export class Api implements Repository {
 
   private async fetch(path: string) {
     const url = this.getUrl(path)
-    console.log(url)
     return fetch(url)
   }
 
